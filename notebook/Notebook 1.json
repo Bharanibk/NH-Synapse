@@ -1,0 +1,233 @@
+{
+	"name": "Notebook 1",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "sparkqsnocfe",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "e48a7260-ea4d-48bd-ae83-260e46c4ef98"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1",
+				"state": {
+					"29386dba-cc80-4e23-b1b5-55b3b1110e12": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "SO43701",
+										"1": "1",
+										"2": "2019-07-01",
+										"3": "Christy Zhu",
+										"4": "christy12@adventure-works.com",
+										"5": "Mountain-100 Silver, 44",
+										"6": "1",
+										"7": "3399.99",
+										"8": "271.9992"
+									},
+									{
+										"0": "SO43704",
+										"1": "1",
+										"2": "2019-07-01",
+										"3": "Julio Ruiz",
+										"4": "julio1@adventure-works.com",
+										"5": "Mountain-100 Black, 48",
+										"6": "1",
+										"7": "3374.99",
+										"8": "269.9992"
+									},
+									{
+										"0": "SO43705",
+										"1": "1",
+										"2": "2019-07-01",
+										"3": "Curtis Lu",
+										"4": "curtis9@adventure-works.com",
+										"5": "Mountain-100 Silver, 38",
+										"6": "1",
+										"7": "3399.99",
+										"8": "271.9992"
+									},
+									{
+										"0": "SO43700",
+										"1": "1",
+										"2": "2019-07-01",
+										"3": "Ruben Prasad",
+										"4": "ruben10@adventure-works.com",
+										"5": "Road-650 Black, 62",
+										"6": "1",
+										"7": "699.0982",
+										"8": "55.9279"
+									},
+									{
+										"0": "SO43703",
+										"1": "1",
+										"2": "2019-07-01",
+										"3": "Albert Alvarez",
+										"4": "albert7@adventure-works.com",
+										"5": "Road-150 Red, 62",
+										"6": "1",
+										"7": "3578.27",
+										"8": "286.2616"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "_c0",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "_c1",
+										"type": "string"
+									},
+									{
+										"key": "2",
+										"name": "_c2",
+										"type": "string"
+									},
+									{
+										"key": "3",
+										"name": "_c3",
+										"type": "string"
+									},
+									{
+										"key": "4",
+										"name": "_c4",
+										"type": "string"
+									},
+									{
+										"key": "5",
+										"name": "_c5",
+										"type": "string"
+									},
+									{
+										"key": "6",
+										"name": "_c6",
+										"type": "string"
+									},
+									{
+										"key": "7",
+										"name": "_c7",
+										"type": "string"
+									},
+									{
+										"key": "8",
+										"name": "_c8",
+										"type": "string"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					}
+				}
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/38dbe249-ae8a-4b4d-a026-cc5934d90c27/resourceGroups/dp000-qsnocfe/providers/Microsoft.Synapse/workspaces/synapseqsnocfe/bigDataPools/sparkqsnocfe",
+				"name": "sparkqsnocfe",
+				"type": "Spark",
+				"endpoint": "https://synapseqsnocfe.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/sparkqsnocfe",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "2.4",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "python"
+					}
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"df = spark.read.load('abfss://files@datalakeqsnocfe.dfs.core.windows.net/sales/orders/2019.csv', format='csv'\r\n",
+					"## If header exists uncomment line below\r\n",
+					"##, header=True\r\n",
+					")\r\n",
+					"display(df.limit(10))"
+				],
+				"attachments": null,
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"microsoft": {
+						"language": "python"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"\r\n",
+					"df = spark.read.load('abfss://files@datalakeqsnocfe.dfs.core.windows.net/sales/orders/2019.csv',format='csv')\r\n",
+					"\r\n",
+					"display(df.limit(5))"
+				],
+				"attachments": null,
+				"execution_count": 2
+			}
+		]
+	}
+}
